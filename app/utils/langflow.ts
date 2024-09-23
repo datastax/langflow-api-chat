@@ -37,21 +37,18 @@ export class LangflowClient {
     }
   }
 
-  async initiateSession(inputValue) {
-    const endpoint = `/lf/${this.langflowId}/api/v1/run/${this.flowId}?stream=false`;
-    return this.post(endpoint, {
-      input_value: inputValue,
-      input_type: "chat",
-      output_type: "chat",
-      tweaks: {},
-    });
-  }
-
   async runFlow(inputValue) {
     try {
-      return await this.initiateSession(inputValue);
+      const endpoint = `/lf/${this.langflowId}/api/v1/run/${this.flowId}?stream=false`;
+      return await this.post(endpoint, {
+        input_value: inputValue,
+        input_type: "chat",
+        output_type: "chat",
+        tweaks: {},
+      });
     } catch (error) {
       console.error("Error running flow:", error);
+      throw error;
     }
   }
 }

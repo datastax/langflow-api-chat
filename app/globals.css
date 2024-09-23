@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text-primary: #ffffff;
+  --text-primary-inverse: #090909;
+  --text-primary-main: #7724aa;
+  --text-secondary: #a6aaae;
+  --text-secondary-inverse: #494a4d;
+  --text-bubble-primary: #eb4039;
+  --background-bubble-primary: #ffdee0;
+  --background-bubble-secondary: #f0f0f0;
+  --border-primary: #ced0d2;
+  --background-soft: #f3e5f5;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --text-tertiary: #fff;
+  --shadow-primary: 0px 6px 16px 0px #0a0a0a1f, 0px 4px 14px 0px #0a0a0a14,
+    0px 8px 10px 0px #0a0a0a14;
+  --processing-dot-size: 4px;
+  --header-footer-background: #b44141;
+  --button-background: #222222;
+}
+
+body {
+  background-image: linear-gradient(
+    140deg,
+    hsl(0deg 47% 38%) 0%,
+    hsl(0deg 46% 36%) 18%,
+    hsl(1deg 45% 33%) 26%,
+    hsl(1deg 44% 30%) 33%,
+    hsl(2deg 43% 27%) 39%,
+    hsl(2deg 41% 25%) 44%,
+    hsl(3deg 39% 22%) 50%,
+    hsl(3deg 37% 19%) 56%,
+    hsl(4deg 33% 17%) 61%,
+    hsl(4deg 29% 14%) 67%,
+    hsl(5deg 24% 12%) 74%,
+    hsl(6deg 16% 9%) 82%,
+    hsl(0deg 0% 7%) 100%
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.chatbot-section {
+  background-color: var(--text-primary);
+  box-shadow: var(--shadow-primary);
+  /* border: 1px solid var(--border-primary); */
+}
+
+.chatbot-header {
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.chatbot-header svg {
+  fill: var(--text-primary-inverse);
+}
+
+.chatbot-text-primary {
+  color: var(--text-primary-inverse);
+}
+
+.chatbot-text-secondary {
+  color: var(--text-secondary);
+}
+
+.chatbot-text-secondary-inverse {
+  color: var(--text-secondary-inverse);
+}
+
+.chatbot-text-tertiary {
+  color: var(--text-tertiary);
+}
+
+.chatbot-input {
+  color: var(--text-primary-inverse);
+  background-color: var(--text-primary);
+  /* border: 1px solid var(--border-primary); */
+}
+
+.chatbot-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.chatbot-send-button {
+  background-color: var(--button-background);
+  color: var(--text-primary);
+}
+
+.chatbot-send-button svg {
+  fill: var(--text-primary);
+}
+
+.chatbot-button-primary {
+  background-color: var(--text-primary-inverse);
+  color: var(--text-primary);
+}
+
+.chatbot-button-secondary {
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary-inverse);
+}
+
+.chatbot-faq-link {
+  border: 1px solid var(--border-primary);
+  border-radius: 24px;
+  color: var(--background-bubble-primary);
+}
+
+.chatbot-faq-link svg {
+  fill: var(--text-tertiary);
+}
+
+.talk-bubble {
+  text-align: left;
+  display: inline-block;
+  position: relative;
+  color: var(--text-secondary-inverse);
+  background-color: var(--background-bubble-secondary);
+  border-radius: 10px;
+  border-bottom-left-radius: 0px;
+}
+
+.talk-bubble.user {
+  text-align: right;
+  color: var(--text-bubble-primary);
+  background-color: var(--background-bubble-primary);
+  border-radius: 10px;
+  border-bottom-right-radius: 0px;
+}
+
+.talk-bubble svg {
+  position: absolute;
+  left: -1px;
+  bottom: 2px;
+  transform: translateY(100%) rotateY(180deg);
+  fill: var(--background-bubble-secondary);
+}
+
+.talk-bubble.user svg {
+  right: -1px;
+  left: auto;
+  bottom: 2px;
+  transform: translateY(100%);
+  fill: var(--background-bubble-primary);
+}
+
+.dot-flashing {
+  position: relative;
+  /* padding-left: 8px; */
+  /* padding-right: 8px; */
+  width: var(--processing-dot-size);
+  height: var(--processing-dot-size);
+  border-radius: 100%;
+  background-color: var(--text-primary-inverse);
+  color: var(--text-primary-inverse);
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+
+.dot-flashing::before,
+.dot-flashing::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dot-flashing::before {
+  left: -6px;
+  width: var(--processing-dot-size);
+  height: var(--processing-dot-size);
+  border-radius: 100%;
+  background-color: var(--text-primary-inverse);
+  color: var(--text-primary-inverse);
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+
+.dot-flashing::after {
+  left: 6px;
+  width: var(--processing-dot-size);
+  height: var(--processing-dot-size);
+  border-radius: 100%;
+  background-color: var(--text-primary-inverse);
+  color: var(--text-primary-inverse);
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
+@keyframes dot-flashing {
+  0% {
+    background-color: var(--text-primary-inverse);
+  }
+
+  50%,
+  100% {
+    background-color: rgba(152, 128, 255, 0.2);
+  }
+}
+
+.prompt-button {
+  background-color: var(--background-bubble-primary);
+  color: var(--text-bubble-primary);
+}
+
+/* Toggle Styles */
+.toggle-background {
+  background-color: var(--background-bubble-primary);
+}
+
+.toggle-boarder {
+  border: 1px solid var(--background-bubble-primary);
+}
+
+.source-link {
+  position: absolute;
+  bottom: -2rem;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.source-link svg {
+  position: static;
+  transform: none;
+  margin-right: 8px;
+}
+
+.source-link a {
+  display: flex;
+  align-items: center;
+  color: var(--text-primary-main);
+  border: 1px solid var(--border-primary);
+  border-radius: 24px;
+  padding: 0 8px;
+  margin-left: 8px;
+}
+
+.link {
+  color: var(--text-primary-main);
+}
+
+.active-chat-header {
+  font-family: "Brush Script MT", cursive;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: right;
+}
+
+.header {
+  overflow: hidden;
+  margin: 0 -0.5rem 0 -0.5rem;
+}
+
+@media (min-width: 768px) {
+  .header {
+    overflow: hidden;
+    margin: -1rem -1.5rem 0 -1.5rem;
+  }
+}
+
+.clip-path-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--header-footer-background);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
+  z-index: 0;
+}
+
+.footer {
+  overflow: hidden;
+  margin: 0 -0.5rem 0 -0.5rem;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    overflow: hidden;
+    margin: 0 -1.5rem -1rem -1.5rem;
+  }
+}
+
+.clip-path-footer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--header-footer-background);
+  clip-path: polygon(0 0, 100% 30%, 100% 100%, 0 100%);
+  z-index: 0;
+}
